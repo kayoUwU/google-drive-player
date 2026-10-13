@@ -28,15 +28,17 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./host 
+        
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
         
-      - name: change directory
-        run: |
-          cd host
       - name: generate config.js
         run: |
           echo "const CONFIG = {" > config.js
