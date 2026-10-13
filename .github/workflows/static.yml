@@ -41,7 +41,7 @@ jobs:
         
       - name: generate config.js
         run: |
-          echo "const CONFIG = {" > config.js
+          echo "const config = {" > config.js
           echo "  API_KEY: '${{ secrets.API_KEY }}'," >> config.js
           echo "  CLIENT_ID: '${{ secrets.CLIENT_ID }}'," >> config.js
           echo "  APP_ID: '${{ secrets.APP_ID }}'" >> config.js
