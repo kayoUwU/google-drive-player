@@ -1,0 +1,222 @@
+:root {
+  --primary: #1db954;
+  --primary-hover: #1aa34a;
+  --secondary: #333;
+  --secondary-border:#555;
+  --secondary-hover:#444;
+  --danger: #d93025;
+  --danger-hover: #b31412;
+  --text-primary: white;
+  --text-invert: black;
+  --text-sub: #5f6368;
+  --text-hover:#f1f3f4;
+  --badge-text: #1a73e8;
+  --badge:#e8f0fe;
+  --border: #dadce0;
+  --border-focus: #1557b0;
+  --card-bg:#1e1e1e;
+
+}
+
+body {
+  font-family: sans-serif;
+  background: var(--text-invert);
+  color: var(--text-primary);
+  padding: 10px;
+}
+
+.container {
+  display: flex;
+  flex-flow: column wrap;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+button {
+  padding: 10px;
+  background: var(--primary);
+  color: var(--text-primary);
+  border: none;
+  width: 100%;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  display: block;
+}
+
+button:hover {
+  background: var(--primary-hover);
+}
+
+button:disabled {
+  background: var(--border);
+  color: var(--text-sub);
+  cursor: not-allowed;
+}
+
+
+.btn-secondary {
+  background: var(--secondary);
+  border: 1px solid var(--secondary-border);
+}
+
+.btn-secondary:hover {
+  background: var(--secondary-hover);
+}
+
+.track-delete {
+  all: unset;
+  cursor: pointer;
+  background: var(--danger);
+}
+
+.track-delete:hover {
+  background: var(--danger-hover);
+}
+
+.flex-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.flex-row button {
+  flex-grow: 1;
+}
+
+audio {
+  width: 100%;
+}
+
+.playlist-management {
+  background: var(--card-bg);
+  padding: 10px;
+  border-radius: 12px;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+select {
+  padding: 10px;
+  background: var(--secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--secondary-border);
+  width: 100%;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+
+input {
+  padding: 10px;
+  background: #2b2b2b;
+  color: var(--text-primary);
+  border: 1px solid var(--secondary-border);
+  width: calc(100% - 24px);
+  border-radius: 4px;
+}
+
+input[type="text"],
+select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+input[type="text"]:focus,
+select:focus {
+  outline: 2px solid var(--border-focus);
+  border-color: transparent;
+}
+
+.playlist {
+  list-style: none;
+  padding: 0;
+}
+
+.trackslist-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  padding: 10px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+/* Interactive Track List Styling */
+.track-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  /* Adds scrolling features */
+  max-height: 200px;
+  /* Limits the height of the list box */
+  overflow-y: auto;
+  /* Injects a scrollbar automatically when content overflows */
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.track-item {
+  display: flex;
+  flex-flow: column;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  transition: background 0.1s;
+}
+
+.track-item:hover {
+  background: var(--secondary-hover);
+}
+
+/* .track-item.active {
+  border-left-color: var(--primary);
+  background: #252525;
+  font-weight: bold;
+} */
+
+.track-name {
+  color: var(--text-primary);
+  font-weight: bold;
+  white-space: wrap;
+  overflow: auto;
+}
+
+.track-info {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.track-meta {
+  font-size: 11px;
+  color: var(--text-sub);
+  margin-top: 2px;
+}
+
+.badge {
+  background: var(--badge);
+  color: var(--badge-text);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--text-sub);
+  padding: 20px;
+  font-style: italic;
+}

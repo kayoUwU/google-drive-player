@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Cloud Audio</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="footer.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="flex-row">
+        <button id="authorize_button" onclick="handleAuthClick()">
+          Authorize
+        </button>
+        <button
+          id="signout_button"
+          style="display: hidden"
+          onclick="handleSignoutClick()"
+        >
+          Sign Out
+        </button>
+        <button class="btn-secondary" onclick="clearStorage()">
+          Clear Storage
+        </button>
+      </div>
+      <h1>🎵 Cloud Audio</h2>
+      <div id="now_playing">Load music to begin playing</div>
+      <audio id="audio_player" controls></audio>
+      <div id="player_controls" class="flex-row">
+        <button onclick="playPrevious()">⏮.</button>
+        <button onclick="playNext()">⏭.</button>
+      </div>
+      <div id="list_title"></div>
+      <div id="auth_div" style="display: none">
+        <div class="trackslist-card">
+          <div class="flex-row">
+            <button
+              id="add_tracks_btn"
+              class="btn-secondary"
+              onclick="pickTracks('append')"
+              style="display: none"
+              disabled
+            >
+              ➕ Add Tracks
+            </button>
+
+            <button
+              id="sync_btn"
+              class="btn-secondary"
+              onclick="syncCurrentPlaylistToDrive()"
+              style="display: none"
+              disabled
+            >
+              ☁️ Sync to Drive
+            </button>
+          </div>
+
+          <!-- Active Track Management View -->
+          <div>
+            <!-- The UL itself now scrolls autonomously -->
+            <ul id="active_track_list" class="track-list" style="display: none">
+              <!-- Dynamic Tracks Injected Here -->
+            </ul>
+            <div id="playlist_empty" class="empty-state">
+              Select a playlist or folder below to play tracks.
+            </div>
+          </div>
+        </div>
+
+        <div class="playlist-management">
+          <button onclick="pickFolder()">
+            📂 Play audio from Drive Folder
+          </button>
+
+          <label for="playlist_selector">Select Local Cached Playlist:</label>
+
+          <div class="flex-row">
+            <select id="playlist_selector">
+              <option value="" disabled selected>
+                -- Choose a Playlist --
+              </option>
+            </select>
+            <button onclick="playPlayList()">Play</button>
+          </div>
+
+          <button class="btn-secondary" onclick="pickDrivePlaylist()">
+            ☁️ Sync Playlist From Drive
+          </button>
+
+          <label for="new_playlist_name"
+            >Create Local Playlist (not sync):</label
+          >
+          <div class="flex-row">
+            <input
+              type="text"
+              id="new_playlist_name"
+              placeholder="e.g., Chill Beats..."
+            />
+            <button
+              type="button"
+              class="btn-secondary"
+              onclick="pickTracks('create')"
+            >
+              Create
+            </button>
+          </div>
+        </div>
+
+      </div>
+      
+      <footer class="footer">
+        <p>
+          &copy; 2026 to <span id="year"></span> Designed & Developed by&nbsp;
+          <a
+            href="https://kayouwu.github.io"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="author"
+          >
+            Kayou W.
+          </a>
+        </p>
+
+        <div id="terms" class="link_button_group">
+
+        </div>
+      </footer>
+
+    </div>
+
+    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript" src="term.js"></script>
+    <script type="text/javascript" src="config.js"></script>
+    <script
+      async
+      defer
+      src="https://apis.google.com/js/api.js"
+      onload="gapiLoaded()"
+    ></script>
+    <script
+      async
+      defer
+      src="https://accounts.google.com/gsi/client"
+      onload="gisLoaded()"
+    ></script>
+  </body>
+</html>
