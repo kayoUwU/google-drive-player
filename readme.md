@@ -20,8 +20,10 @@ sample code
 
 ## generate config.js
 - setup API_KEY,CLIENT_ID,APP_ID to github secret
+
+host/config.js
 ```js
-const config = {
+const CONFIG = {
 // Replace with your client ID and API key from https://console.cloud.google.com/.
 API_KEY:"${{ secrets.API_KEY }}",
 CLIENT_ID: "${{ secrets.CLIENT_ID }}",
@@ -29,5 +31,3 @@ CLIENT_ID: "${{ secrets.CLIENT_ID }}",
 APP_ID:"${{ secrets.APP_ID }}",
 };
 ```
-
-

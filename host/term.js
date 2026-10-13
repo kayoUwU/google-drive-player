@@ -1,7 +1,6 @@
 const LegalContentType = {
   TERMS: "TERMS",
   PRIVACY: "PRIVACY",
-  DATA: "DATA",
 }
 
 const legalContent = {
@@ -23,12 +22,12 @@ function init() {
   year.innerHTML = new Date().getFullYear();
 
   {
-    Object.keys(LegalContentType)
+    Object.values(LegalContentType)
       .map((index) => {
         const button = document.createElement("button");
         button.className = "link_button";
         button.onclick = () => alert(legalContent[index].content);
-        button.innerHTML = legalContent[index].title;
+        button.innerHTML = `${legalContent[index].title}`;
         content.appendChild(button);
       })
   }

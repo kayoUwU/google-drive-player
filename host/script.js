@@ -20,9 +20,9 @@ pickTracks
 const SCOPES =
   "https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/drive.readonly https://www.googleapis.com/auth/userinfo.email";
 
-const API_KEY = config.API_KEY;
-const CLIENT_ID = config.CLIENT_ID;
-const APP_ID = config.APP_ID;
+const API_KEY = CONFIG.API_KEY;
+const CLIENT_ID = CONFIG.CLIENT_ID;
+const APP_ID = CONFIG.APP_ID;
 
 let tokenClient;
 let accessToken = null; //gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().access_token;
@@ -54,7 +54,6 @@ const newPlaylistName = document.getElementById("new_playlist_name");
 
 
 function init() {
-  console.log("init");
   authorizeBtn.style.visibility = "hidden";
   signoutBtn.style.visibility = "hidden";
   authDiv.style.display = "none";
@@ -118,7 +117,7 @@ async function fetchUserEmail(accessToken) {
     },
   );
   const userInfo = await response.json();
-  console.log("userInfo", userInfo); // The user's email address
+  //console.log("userInfo", userInfo); // The user's email address
   return userInfo.email;
 }
 
@@ -136,7 +135,6 @@ async function authCallback(response, savedEmail) {
     const email = await fetchUserEmail(accessToken);
     if (email) {
       localStorage.setItem(STORAGE_USEREMAIL_NAME, email);
-      console.log("email", email);
     }
   }
   //user can select another email,  use fetchUserEmail everytime if need to get the lastest email
@@ -404,7 +402,7 @@ async function playTrack(file) {
 
     player
       .play()
-      .catch((err) => console.log("Playback decoding error:", err));
+      .catch((err) => console.error("Playback decoding error:", err));
 
     // Clean up blob URL memory when the song switches or ends
     player.onended = () => {
@@ -466,11 +464,11 @@ async function fetchFolderRecursively(folder) {
     });
 
     const items = response.result.files || [];
-    console.log(`Drive API response for folder ${folder.name}: \n${JSON.stringify(response.result, null, 2)}\n`);
+    //console.log(`Drive API response for folder ${folder.name}: \n${JSON.stringify(response.result, null, 2)}\n`);
     for (const item of items) {
       if (item.mimeType === "application/vnd.google-apps.folder") {
         // Found a nested subfolder inside the chosen directory -> Crawl deeper
-        console.log(`📁 Diving into subfolder: ${item.name}`);
+       // console.log(`📁 Diving into subfolder: ${item.name}`);
         await fetchFolderRecursively(item);
       } else {
         // Found a playable audio track -> Add it to our isolated playlist
@@ -494,7 +492,7 @@ async function fetchFolderTracks(folderId, folderName) {
       tracksList = response.result.files;
 
       if (tracksList && tracksList.length > 0) {
-        console.log(`Drive API response for folder ${folderName}: \n${JSON.stringify(response.result, null, 2)}\n`);
+        //console.log(`Drive API response for folder ${folderName}: \n${JSON.stringify(response.result, null, 2)}\n`);
         // Play the first track or create a tracksList loop
         playTrack(tracksList[currentTrackIndex]);
       } else {
