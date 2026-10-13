@@ -46,12 +46,13 @@ jobs:
           echo "  CLIENT_ID: '${{ secrets.CLIENT_ID }}'," >> config.js
           echo "  APP_ID: '${{ secrets.APP_ID }}'" >> config.js
           echo "};" >> config.js
+          ls -al
           
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload entire repository
-          path: '.'
+          path: './host'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
